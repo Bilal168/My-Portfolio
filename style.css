@@ -411,6 +411,13 @@ footer{ border-top:1px solid var(--border); padding:36px 32px; }
    RESPONSIVE
    ============================================ */
 @media (max-width:860px){
+    /* Reduce GPU-heavy effects that cause scroll jank on mobile */
+    nav.scrolled{ backdrop-filter:none; }
+    .modal-overlay{ backdrop-filter:none; }
+    .sweep{ animation-duration:7s; }
+    .scan-rings::before{ animation:none; opacity:.5; }
+    .scroll-cue{ animation:none; }
+
     .hero-inner{ grid-template-columns:1fr; text-align:center; }
     .hero-desc{ margin-left:auto; margin-right:auto; }
     .hero-actions{ justify-content:center; }
@@ -429,6 +436,9 @@ footer{ border-top:1px solid var(--border); padding:36px 32px; }
     .nav-links.open{ right:0; }
 }
 
+@media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+}
 @media (prefers-reduced-motion: reduce){
     *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
 }
